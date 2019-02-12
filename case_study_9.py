@@ -50,9 +50,9 @@ def give(d):
     d['grain'] -= s
     if s < 250:
         d['smoot'] += 8
-    if 250<s<500:
+    if 250 < s < 500:
         d['smoot'] -= 5
-    if 500<s<1000:
+    if 500 < s < 1000:
         d['smoot'] -= 3
     return d
 
@@ -146,7 +146,7 @@ def holiday(d):
     return d
 
 
-def princess_HB(d):
+def princess_hb(d):
     # money - деньги из казны
     if d['money'] < 500:
         i = random.randint(1000)
@@ -180,18 +180,22 @@ def war(d):
             if v == 0:
                 d['money'] -= 1000
                 d['the_land'] *= 0.9
+                print(ru_local.WAR_DEFEAT)
             else:
                 d['money'] += 1000
                 d['the_land'] *= 1.10
+                print(ru_local.WAR_VICTORY)
         else:
             c = [1, 0, 0, 0, 0]
             v = random.choice(c)
             if v == 0:
                 d['money'] -= 1000
                 d['the_land'] *= 0.9
+                print(ru_local.WAR_DEFEAT)
             else:
                 d['money'] += 5000
                 d['the_land'] *= 1.50
+                print(ru_local.WAR_VICTORY)
     return d
 
 
@@ -204,8 +208,11 @@ def side_rebellion(d):
     a = [1, 0]
     v = random.choice(a)
     if v == 1:
-        d['money'] -= 400
-        d['people'] -= 40
+        d['money'] += 400
+        d['people'] += 40
+        print(ru_local.REBELLION_CRUSHED)
+    else:
+        print(ru_local.REBELLION_NOT_CRUSHED)
     return d
 
 
@@ -217,8 +224,10 @@ def investition(d):
     v = random.choice(a)
     if v == 1:
         d['money'] += 0.3*s
+        print(ru_local.INVESTITION_SUCCESS)
     else:
         d['money'] -= s
+        print(ru_local.INVESTITION_FALL)
     return d
 
 
@@ -232,9 +241,10 @@ def expropriation(d):
         v = random.choice(a)
         if v == 1:
             d['the_land'] += 100
+            print(ru_local.EXPROPRIATION_SUCCESS)
         else:
             d['money'] -= 500
-    return d
+            print(ru_local.EXPROPRIATION_FALL)
 
 
 def magic(d):
@@ -244,10 +254,13 @@ def magic(d):
     yn = int(input())
     if yn == 1:
         d['money'] -= 500
-    a = [1, 0]
-    v = random.choice(a)
-    if v == 1:
-        d['grain'] += 1000
+        a = [1, 0]
+        v = random.choice(a)
+        if v == 1:
+            d['grain'] += 1000
+            print(ru_local.MAGIC_SUCCESS)
+        else:
+            print(ru_local.MAGIC_FALL)
     return d
 
 
@@ -271,7 +284,7 @@ def main():
         buy(d)
         sow(d)
         give(d)
-        list_def1 = [1,2,3,4,5]
+        list_def1 = [1, 2, 3, 4, 5]
         r1 = random.choice(list_def1)
         if r1 == 1:
             war(d)
@@ -298,8 +311,9 @@ def main():
         elif r2 == 6:
             holiday(d)
         else:
-            princess_HB(d)
+            princess_hb(d)
         d['year'] += 1
+
     print(ru_local.YOU_DID_NOT_COPE_WITH_TASKS_OF_RULER_SO_YOU_OVERTHREW)
 
 
