@@ -92,7 +92,6 @@ def inheritance(d):
 
 
 def princess(d):
-    # money - деньги из казны
     if d['money'] >= 500:
         i = random.randint(500, 1000)
         print(ru_local.PRINCESS_1,
@@ -106,7 +105,6 @@ def princess(d):
 
 
 def rats(d):
-    # количество зерна
     if d['grain'] >= 250:
         i = random.randint(250, 1000)
         print(ru_local.RATS_1, i, ru_local.RATS_2)
@@ -118,7 +116,6 @@ def rats(d):
 
 
 def princess_dress(d):
-    # money - деньги из казны
     if d['money'] >= 500:
         i = random.randint(500, 1000)
         print(ru_local.PRINCESS_DRESS_1,
@@ -132,7 +129,6 @@ def princess_dress(d):
 
 
 def holiday(d):
-    # money - деньги из казны
     if d['money'] >= 500:
         i = random.randint(500, 1000)
         print(ru_local.HOLIDAY_1, i,
@@ -140,16 +136,15 @@ def holiday(d):
         d['money'] -= i
     elif d['money'] < 500:
         i = d['money']
-        print(ru_local.HOLIDAY_3, i,
-              ru_local.HOLIDAY_4)
+        print(ru_local.HOLIDAY_1, i,
+              ru_local.HOLIDAY_2)
         d['money'] = 0
     return d
 
 
 def princess_hb(d):
-    # money - деньги из казны
     if d['money'] < 500:
-        i = random.randint(1000)
+        i = random.randint(0, 1000)
         print(ru_local.princess_HB_1,
               ru_local.princess_HB_2, i, ru_local.princess_HB_3)
         d['money'] -= i
